@@ -1,10 +1,14 @@
-# Aula Especializate — Desafíos · Gateway LTI 1.3
+
+
+# Gateaway para aula de desafíos - Especializate
 
 Gateway (Node.js + Express) que **protege el sitio estático de Desafíos**
 (`desafios-especializate`, HTML/CSS/JS puro) para que solo se abra desde Moodle.
 Valida el lanzamiento LTI 1.3 **en el backend**, crea una sesión server-side y recién
 entonces sirve las páginas. **No persiste progreso**: no hay backend de Spring ni base
-de datos (los "guardados" del sitio siguen en el `localStorage` de cada navegador).
+de datos. Los datos persistidos se mantienen en el naviegador.
+
+<!--  
 
 ```
 Moodle ──LTI 1.3──▶ Nginx /aula/desafios/ ──▶ Gateway Express (:3002) ──▶ archivos de AULA_DIR
@@ -139,3 +143,6 @@ Notas:
   rutas absolutas (`/assets/...`) hay que cambiarlas.
 - **Guardados / tema:** siguen en el `localStorage` del navegador (clave
   `especializate:guardados:v1`); en una computadora compartida los ve quien use ese navegador.
+
+
+-->
