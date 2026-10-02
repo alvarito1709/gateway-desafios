@@ -1,0 +1,16 @@
+# Dependencias
+node_modules/
+
+# Secretos y configuración local: NUNCA al repositorio
+.env
+.env.*
+!.env.example
+
+# Clave privada de la herramienta LTI (se genera sola en el primer arranque)
+.keys/
+
+# Datos del store 'file' (solo desarrollo)
+.data/
+
+*.log
+.DS_Store
