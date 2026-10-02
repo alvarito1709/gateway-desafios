@@ -1,0 +1,26 @@
+# Unidad systemd PLANTILLA: una instancia por aula.
+#   /etc/systemd/system/especializate-gateway@.service
+#   sudo systemctl enable --now especializate-gateway@desafios
+#
+# Cada instancia %i usa:
+#   código y .keys/ : /opt/especializate/%i
+#   configuración   : /etc/especializate/%i.env
+# No pisa especializate-gateway.service (iniciación): es otra unidad.
+[Unit]
+Description=Especializate gateway LTI 1.3 (%i)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/especializate/%i
+EnvironmentFile=/etc/especializate/%i.env
+ExecStart=/usr/bin/node src/server.js
+Restart=on-failure
+RestartSec=3
+# Usar el mismo usuario que ya corre especializate-gateway.service.
+# Necesita escribir en /opt/especializate/%i/.keys y leer AULA_DIR.
+User=www-data
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
